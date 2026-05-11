@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepack": "npm build",
+    "prepack": "npm run build",
     "test": "tap --tsconfig=tsconfig.json --timeout 0 --jobs=1 tests/{*,**/*}.test.ts"
   },
   "keywords": [],
