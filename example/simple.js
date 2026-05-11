@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 import plugin from '../lib/index.js';
 import { connect } from 'mqtt';
-const app = new fastify({
+const app = fastify({
     logger: true
 });
 
