@@ -1,6 +1,6 @@
 {
   "name": "@albirex/fastify-mqtt-dynamic-security",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "type": "module",
   "main": "./lib/index.cjs",
