@@ -8,7 +8,10 @@ const paramsSchema = Type.Object({
 const responseSchema = Type.Object({
     groupname: Type.String(),
     clients: Type.Optional(Type.Array(Type.String())),
-    roles: Type.Optional(Type.Array(Type.String()))
+    roles: Type.Optional(Type.Array(Type.Object({
+        rolename: Type.String(),
+        priority: Type.Number()
+    })))
 });
 
 export default async (fastify: FastifyInstance) => {

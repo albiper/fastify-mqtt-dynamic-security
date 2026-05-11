@@ -3,8 +3,6 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
 const bodySchema = Type.Object({
     groupName: Type.String(),
-    textName: Type.Optional(Type.String()),
-    textDescription: Type.Optional(Type.String()),
     roles: Type.Optional(
         Type.Array(
             Type.Object({
