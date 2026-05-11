@@ -1,0 +1,17 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001 # MQTT over WebSocket (mqtt.js)
+    volumes:
+      - ./docker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./docker/password-init-file:/mosquitto/config/password-init-file
+      - ./docker/dynamic_config.json:/mosquitto/dynamic_config/dynamic-security.json
+  api:
+    build:
+      dockerfile: ./Dockerfile
+    environment:
+      MQTT_HOST: "mqtt://mosquitto:1883"
+    ports:
+      - 3000:3000

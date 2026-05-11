@@ -1,11 +1,17 @@
 import { FastifyInstance } from "fastify";
 import fastifyPlugin from "fastify-plugin";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 import { MqttClient } from "mqtt";
 import { Acl, ClientGroup, ClientRole, GetClientResponse, GetGroupResponse, GetRoleResponse, ListClientsResponse, ListGroupsResponse, ListRolesResponse } from "./types/mqtt.js";
+import fastifyAutoload from "@fastify/autoload";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface FastifyMqttDynamicSecurityOpts {
     mqttClient?: MqttClient,
-    responseTimeout?: number
+    responseTimeout?: number,
+    routePrefix?: string
 }
 
 export const controlTopic = '$CONTROL/dynamic-security/v1';
@@ -237,6 +243,24 @@ export default fastifyPlugin(async (fastify: FastifyInstance, opts: FastifyMqttD
     };
 
     fastify.decorate('mqttDynamicSecurity', dynamicSecurityManager);
+
+    fastify.register(fastifyAutoload, {
+        dir: join(__dirname, 'routes'),
+        prefix: opts.routePrefix ?? '/mqtt',
+        routeParams: true
+    })
+
+    fastify.addHook('onReady', (done) => {
+        opts.mqttClient?.subscribe('$CONTROL/dynamic-security/v1/#', { nl: true, qos: 0 }, (err) => {
+            if (err) {
+                throw err;
+            } else {
+                fastify.log.info('Listening on topic [$CONTROL/dynamic-security/v1/#]');
+            }
+        });
+
+        done();
+    });
 })
 
 declare module 'fastify' {

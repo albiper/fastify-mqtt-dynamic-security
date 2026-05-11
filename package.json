@@ -21,10 +21,8 @@
     "url": "https://github.com/albiper/platformatic-logto"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run lint && tsup",
-    "build-ts": "tsc",
-    "lint": "eslint"
+    "build": "tsc",
+    "prepack": "npm build"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +32,7 @@
     "mqtt": "^5.15.1"
   },
   "dependencies": {
+    "@fastify/autoload": "^6.3.1",
     "@sinclair/typebox": "^0.34.49",
     "fastify-plugin": "^5.1.0"
   },
