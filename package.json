@@ -1,0 +1,43 @@
+{
+  "name": "@albirex/fastify-mqtt-dynamic-security",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albiper/platformatic-logto"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run lint && tsup",
+    "build-ts": "tsc",
+    "lint": "eslint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "fastify": "^5.8.5",
+    "mqtt": "^5.15.1"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49",
+    "fastify-plugin": "^5.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
