@@ -22,7 +22,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepack": "npm build"
+    "prepack": "npm build",
+    "test": "tap --tsconfig=tsconfig.json --timeout 0 --jobs=1 tests/{*,**/*}.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,8 @@
     "fastify-plugin": "^5.1.0"
   },
   "devDependencies": {
+    "@types/node": "^25.7.0",
+    "tap": "^21.7.2",
     "typescript": "^6.0.3"
   }
 }
